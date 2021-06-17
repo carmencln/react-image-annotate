@@ -57,6 +57,7 @@ type Props = {
   onRegionClassAdded: () => {},
   hideHeader?: boolean,
   hideHeaderText?: boolean,
+  hideSettings?: boolean,
 }
 
 export const MainLayout = ({
@@ -70,6 +71,7 @@ export const MainLayout = ({
   hideHeaderText,
   hideNext = false,
   hidePrev = false,
+  hideSettings = false,
 }: Props) => {
   const classes = useStyles()
   const settings = useSettings()
@@ -257,7 +259,7 @@ export const MainLayout = ({
                 ? { name: "Play" }
                 : { name: "Pause" },
               !nextImageHasRegions && activeImage.regions && { name: "Clone" },
-              { name: "Settings" },
+              !hideSettings && { name: "Settings" },
               state.fullScreen ? { name: "Window" } : { name: "Fullscreen" },
               { name: "Save" },
             ].filter(Boolean)}
