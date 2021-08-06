@@ -156,7 +156,7 @@ export const RegionLabel = ({
               />
             </div>
           )}
-          {allowComments && (
+          {allowComments && !showCommentInRegionHeader && (
             <TextField
               InputProps={{
                 className: classes.commentBox,
