@@ -59,6 +59,7 @@ type Props = {
   hideHeaderText?: boolean,
   hideSettings?: boolean,
   hideRightSidebar?: boolean,
+  hideLeftSidebar?: boolean
 }
 
 export const MainLayout = ({
@@ -74,6 +75,7 @@ export const MainLayout = ({
   hidePrev = false,
   hideSettings = false,
   hideRightSidebar = false,
+  hideLeftSidebar = false
 }: Props) => {
   const classes = useStyles()
   const settings = useSettings()
@@ -333,7 +335,10 @@ export const MainLayout = ({
             ]
               .filter(Boolean)
               .filter(
-                (a) => a.alwaysShowing || state.enabledTools.includes(a.name)
+                (a) => a.alwaysShowing || state.enabledTools.includes(a.name) 
+              )
+              .filter(
+                (a) => !hideLeftSidebar
               )}
             rightSidebarItems={[
               debugModeOn && (

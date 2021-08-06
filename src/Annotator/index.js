@@ -54,6 +54,7 @@ type Props = {
   hidePrev?: boolean,
   hideSettings?: boolean,
   hideRightSidebar?: boolean,
+  hideLeftSidebar?: boolean,
 }
 
 export const Annotator = ({
@@ -95,6 +96,7 @@ export const Annotator = ({
   hidePrev,
   hideSettings,
   hideRightSidebar,
+  hideLeftSidebar,
   allowComments,
 }: Props) => {
   if (typeof selectedImage === "string") {
@@ -193,6 +195,7 @@ export const Annotator = ({
         hidePrev={hidePrev}
         hideSettings={hideSettings}
         hideRightSidebar={hideRightSidebar}
+        hideLeftSidebar={hideLeftSidebar}
       />
     </SettingsProvider>
   )
