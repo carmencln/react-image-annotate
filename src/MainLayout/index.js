@@ -194,6 +194,7 @@ export const MainLayout = ({
       onChangeVideoPlaying={action("CHANGE_VIDEO_PLAYING", "isPlaying")}
       onRegionClassAdded={onRegionClassAdded}
       allowComments={state.allowComments}
+      showCommentInRegionHeader={state.showCommentInRegionHeader}
     />
   )
 

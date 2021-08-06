@@ -67,6 +67,7 @@ type Props = {
   autoSegmentationOptions?: Object,
   modifyingAllowedArea?: boolean,
   allowComments?: Boolean,
+  showCommentInRegionHeader?: Boolean,
   onChangeRegion: (Region) => any,
   onBeginRegionEdit: (Region) => any,
   onCloseRegionEdit: (Region) => any,
@@ -140,6 +141,7 @@ export const ImageCanvas = ({
   modifyingAllowedArea = false,
   keypointDefinitions,
   allowComments,
+  showCommentInRegionHeader
 }: Props) => {
   const classes = useStyles()
 
@@ -390,6 +392,7 @@ export const ImageCanvas = ({
             RegionEditLabel={RegionEditLabel}
             onRegionClassAdded={onRegionClassAdded}
             allowComments={allowComments}
+            showCommentInRegionHeader={showCommentInRegionHeader}
           />
         </PreventScrollToParents>
       )}
@@ -405,6 +408,7 @@ export const ImageCanvas = ({
             region={highlightedRegion}
             imageSrc={imageSrc}
             allowComments={allowComments}
+            showCommentInRegionHeader={showCommentInRegionHeader}
           />
         </div>
       )}

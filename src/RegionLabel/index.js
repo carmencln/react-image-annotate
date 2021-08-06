@@ -31,6 +31,7 @@ type Props = {
   onOpen: (Region) => null,
   onRegionClassAdded: () => {},
   allowComments?: boolean,
+  showCommentInRegionHeader?: boolean,
 }
 
 export const RegionLabel = ({
@@ -44,6 +45,7 @@ export const RegionLabel = ({
   onOpen,
   onRegionClassAdded,
   allowComments,
+  showCommentInRegionHeader
 }: Props) => {
   const classes = useStyles()
   const commentInputRef = useRef(null)
@@ -69,7 +71,10 @@ export const RegionLabel = ({
                 className="circle"
                 style={{ backgroundColor: region.color }}
               />
-              {region.cls}
+              {region.cls} 
+              {showCommentInRegionHeader && (
+                <>  {region.comment || ""}</>
+              )}
             </div>
           )}
           {region.tags && (

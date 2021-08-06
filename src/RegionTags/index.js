@@ -28,6 +28,7 @@ export const RegionTags = ({
   RegionEditLabel,
   onRegionClassAdded,
   allowComments,
+  showCommentInRegionHeader
 }) => {
   const RegionLabel =
     RegionEditLabel != null ? RegionEditLabel : DefaultRegionLabel
@@ -120,6 +121,7 @@ export const RegionTags = ({
               imageSrc={imageSrc}
               onRegionClassAdded={onRegionClassAdded}
               allowComments={allowComments}
+              showCommentInRegionHeader={showCommentInRegionHeader}
             />
           </div>
         </div>
