@@ -151,6 +151,9 @@ export default (state: MainLayoutState, action: Action) => {
         action.region
       )
     }
+    case "UPDATE_IMAGES": {
+      return setIn(state, ["images"], action.images)
+    }
     case "CHANGE_IMAGE": {
       if (!activeImage) return state
       const { delta } = action
