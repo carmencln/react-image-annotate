@@ -137,7 +137,7 @@ export default (state: MainLayoutState, action: Action) => {
         const clsIndex = state.regionClsList.indexOf(action.region.cls)
         if (clsIndex !== -1) {
           state = setIn(state, ["selectedCls"], action.region.cls)
-
+          action.region.comment = "";
           const clsColor = state.regionClsColorList?.find(r=>r.cls === action.region.cls)
           if (clsColor) {
             action.region.color = clsColor.color
