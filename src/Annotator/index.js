@@ -180,12 +180,18 @@ export const Annotator = ({
   }, [selectedImage, state.images])
 
   useEffect(() => {
-    console.log('useEffect UPDATE_IMAGES from annotator')
     dispatchToReducer({
       type: "UPDATE_IMAGES",
       images: images,
     })
   }, [images])
+
+  useEffect(() => {
+    dispatchToReducer({
+      type: "regionClsList",
+      regionClsList: regionClsList,
+    })
+  }, [regionClsList])
 
   if (!images && !videoSrc)
     return 'Missing required prop "images" or "videoSrc"'
