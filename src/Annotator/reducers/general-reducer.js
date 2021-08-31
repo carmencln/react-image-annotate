@@ -543,7 +543,8 @@ export default (state: MainLayoutState, action: Action) => {
       }
 
       let newRegion
-      let defaultRegionCls = state.selectedCls,
+      //let defaultRegionCls = state.selectedCls,
+      let defaultRegionCls = "",
         defaultRegionColor = "#ff0000"
 
       const clsIndex = (state.regionClsList || []).indexOf(defaultRegionCls)

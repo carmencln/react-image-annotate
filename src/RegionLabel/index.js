@@ -119,7 +119,7 @@ export const RegionLabel = ({
           {(allowedClasses || []).length > 0 && (
             <div style={{ marginTop: 6 }}>
               <CreatableSelect
-                placeholder="Classification"
+                placeholder=""
                 onChange={(o, actionMeta) => {
                   if (actionMeta.action == "create-option") {
                     onRegionClassAdded(o.value)
