@@ -548,7 +548,13 @@ export default (state: MainLayoutState, action: Action) => {
 
       const clsIndex = (state.regionClsList || []).indexOf(defaultRegionCls)
       if (clsIndex !== -1) {
-        defaultRegionColor = colors[clsIndex % colors.length]
+        const clsColor = state.regionClsColorList?.find(r=>r.cls === defaultRegionCls)
+          if (clsColor) {
+            defaultRegionColor = clsColor.color
+          }
+          else{
+            defaultRegionColor = colors[clsIndex % colors.length]
+          }
       }
 
       switch (state.selectedTool) {
