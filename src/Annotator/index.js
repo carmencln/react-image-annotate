@@ -191,9 +191,7 @@ export const Annotator = ({
   }, [images])
 
   useEffect(() => {
-    if(onChange){
       return onChange(without(state, "history"))
-    }
   }, [state.regions])
 
   useEffect(() => {
