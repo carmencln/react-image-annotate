@@ -90,6 +90,7 @@ export const Annotator = ({
   onExit,
   onNextImage,
   onPrevImage,
+  onChange,
   keypointDefinitions,
   autoSegmentationOptions = { type: "autoseg" },
   hideHeader,
@@ -188,6 +189,12 @@ export const Annotator = ({
       images: images,
     })
   }, [images])
+
+  useEffect(() => {
+    if(onChange){
+      return onChange(without(state, "history"))
+    }
+  }, [state.regions])
 
   useEffect(() => {
     dispatchToReducer({
