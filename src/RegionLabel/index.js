@@ -179,9 +179,9 @@ export const RegionLabel = ({
                 onClick={() => onClose(region)}
                 size="small"
                 variant="contained"
-                color="primary"
+                style={{backgroundColor:"#578c37"}}
               >
-                <CheckIcon />
+                <CheckIcon style={{color:"#fff"}}/>
               </Button>
             </div>
           )}
