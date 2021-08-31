@@ -90,7 +90,7 @@ export const RegionLabel = ({
       ) : (
         <div style={{ width: 200 }}>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <div
+          {/*   <div
               style={{
                 display: "flex",
                 backgroundColor: region.color || "#888",
@@ -104,7 +104,7 @@ export const RegionLabel = ({
               }}
             >
               {region.type}
-            </div>
+            </div> */}
             <div style={{ flexGrow: 1 }} />
             <IconButton
               onClick={() => onDelete(region)}
