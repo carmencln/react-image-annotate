@@ -28,6 +28,7 @@ type Props = {
   allowedArea?: { x: number, y: number, w: number, h: number },
   regionTagList?: Array<string>,
   regionClsList?: Array<string>,
+  regionClsColorList?: Array<{ cls: string, color: string }>,
   imageTagList?: Array<string>,
   imageClsList?: Array<string>,
   enabledTools?: Array<string>,
@@ -76,6 +77,7 @@ export const Annotator = ({
   selectedTool = "select",
   regionTagList = [],
   regionClsList = [],
+  regionClsColorList = null,
   imageTagList = [],
   imageClsList = [],
   keyframes = {},
@@ -126,6 +128,7 @@ export const Annotator = ({
       showMask: true,
       labelImages: imageClsList.length > 0 || imageTagList.length > 0,
       regionClsList,
+      regionClsColorList,
       regionTagList,
       imageClsList,
       imageTagList,
@@ -192,6 +195,13 @@ export const Annotator = ({
       regionClsList: regionClsList,
     })
   }, [regionClsList])
+
+  useEffect(() => {
+    dispatchToReducer({
+      type: "UPDATE_REGION_CLS_COLOR",
+      regionClsColorList: regionClsColorList,
+    })
+  }, [regionClsColorList])
 
   if (!images && !videoSrc)
     return 'Missing required prop "images" or "videoSrc"'

@@ -45,6 +45,7 @@ export const examples = {
     // regionClsList: ["hotdog"],
     regionTagList: ["has-bun"],
     regionClsList: ["hotdog", "not-hotdog"],
+    regionClsColorList: [{cls:"hotdog", color:"#fff"}, {cls:"not-hotdog", color:"#000"}],
     enabledTools: ["select", "create-box"],
     // showTags: true,
     images: [
@@ -177,6 +178,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
   taskDescription?: string, // markdown
   regionTagList?: Array<string>,
   regionClsList?: Array<string>,
+  regionClsColorList?: Array<{ cls: string, color: string }>
   imageTagList?: Array<string>,
   imageClsList?: Array<string>,
   // all tools are enabled by default

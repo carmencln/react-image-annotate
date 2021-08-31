@@ -74,6 +74,7 @@ export type MainLayoutStateBase = {|
   taskDescription: string,
   allowedArea?: { x: number, y: number, w: number, h: number },
   regionClsList?: Array<string>,
+  regionClsColorList?: Array<{ cls: string, color: string }>,
   regionTagList?: Array<string>,
   imageClsList?: Array<string>,
   imageTagList?: Array<string>,
