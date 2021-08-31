@@ -188,7 +188,7 @@ export const Annotator = ({
 
   useEffect(() => {
     dispatchToReducer({
-      type: "regionClsList",
+      type: "UPDATE_REGION_CLS",
       regionClsList: regionClsList,
     })
   }, [regionClsList])
