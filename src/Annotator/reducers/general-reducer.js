@@ -70,18 +70,18 @@ export default (state: MainLayoutState, action: Action) => {
     const [region, regionIndex] = getRegion(regionId)
     if (!region) return state
     if (obj !== null) {
-      return setIn(state, [...pathToActiveImage, "regions", regionIndex], {
+      return state.setIn([...pathToActiveImage, "regions", regionIndex], {
         ...region,
         ...obj,
       })
+      .setIn(["showResult"],Math.floor(Math.random() * 1000000000));
     } else {
       // delete region
       const regions = activeImage.regions
-      return setIn(
-        state,
+      return state.setIn(
         [...pathToActiveImage, "regions"],
-        (regions || []).filter((r) => r.id !== region.id)
-      )
+        (regions || []).filter((r) => r.id !== region.id))
+        .setIn(["showResult"],Math.floor(Math.random() * 1000000000));
     }
   }
   const unselectRegions = (state: MainLayoutState) => {
@@ -154,11 +154,11 @@ export default (state: MainLayoutState, action: Action) => {
       if (!isEqual(oldRegion.comment, action.region.comment)) {
         state = saveToHistory(state, "Change Region Comment")
       }
-      return setIn(
-        state,
+      return state.setIn(
         [...pathToActiveImage, "regions", regionIndex],
-        action.region
-      )
+        action.region)
+        .setIn(["showResult"],Math.floor(Math.random() * 1000000000));
+      
     }
     case "UPDATE_IMAGES": {
       return setIn(state, ["images"], action.images)
@@ -695,7 +695,8 @@ export default (state: MainLayoutState, action: Action) => {
         )
         .concat(newRegion ? [newRegion] : [])
 
-      return setIn(state, [...pathToActiveImage, "regions"], regions)
+      return state.setIn([...pathToActiveImage, "regions"], regions)
+      .setIn(["showResult"],Math.floor(Math.random() * 1000000000));
     }
     case "MOUSE_UP": {
       const { x, y } = action
@@ -727,7 +728,7 @@ export default (state: MainLayoutState, action: Action) => {
         case "MOVE_REGION":
         case "RESIZE_KEYPOINTS":
         case "MOVE_POLYGON_POINT": {
-          return { ...state, mode: null }
+          return { ...state, mode: null, showResult:Math.floor(Math.random() * 1000000000) }
         }
         case "MOVE_KEYPOINT": {
           return { ...state, mode: null }
@@ -811,18 +812,16 @@ export default (state: MainLayoutState, action: Action) => {
     case "DELETE_REGION": {
       const regionIndex = getRegionIndex(action.region)
       if (regionIndex === null) return state
-      return setIn(
-        state,
+      return state.setIn(
         [...pathToActiveImage, "regions"],
-        (activeImage.regions || []).filter((r) => r.id !== action.region.id)
-      )
+        (activeImage.regions || []).filter((r) => r.id !== action.region.id))
+        .setIn(["showResult"],Math.floor(Math.random() * 1000000000));
     }
     case "DELETE_SELECTED_REGION": {
-      return setIn(
-        state,
+      return state.setIn(
         [...pathToActiveImage, "regions"],
-        (activeImage.regions || []).filter((r) => !r.highlighted)
-      )
+        (activeImage.regions || []).filter((r) => !r.highlighted))
+        .setIn(["showResult"],Math.floor(Math.random() * 1000000000));
     }
     case "HEADER_BUTTON_CLICKED": {
       const buttonName = action.buttonName.toLowerCase()

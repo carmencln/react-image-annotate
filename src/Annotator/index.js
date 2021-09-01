@@ -56,7 +56,6 @@ hideHeader ?: boolean,
   hideSettings ?: boolean,
   hideRightSidebar ?: boolean,
   hideLeftSidebar ?: boolean,
-  showResult ?: number,
 }
 
 export const Annotator = ({
@@ -103,7 +102,6 @@ export const Annotator = ({
   hideLeftSidebar,
   allowComments,
   showCommentInRegionHeader,
-  showResult,
 }: Props) => {
   if (typeof selectedImage === "string") {
     selectedImage = (images || []).findIndex((img) => img.src === selectedImage)
@@ -142,7 +140,6 @@ export const Annotator = ({
       keypointDefinitions,
       allowComments,
       showCommentInRegionHeader,
-      showResult,
       ...(annotationType === "image"
         ? {
           selectedImage,
@@ -196,9 +193,9 @@ export const Annotator = ({
 
   useEffect(() => {
     if (onRegionsChange) {
-      onRegionsChange(state.images);
+       onRegionsChange(without(state, "history"));
     }
-  }, [showResult])
+  }, [state.showResult])
 
   useEffect(() => {
     dispatchToReducer({
