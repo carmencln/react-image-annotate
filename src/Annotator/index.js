@@ -166,18 +166,6 @@ export const Annotator = ({
     }
  
     dispatchToReducer(action)
-
-    if(onChange) {
-      if (["CHANGE_REGION", "DELETE_REGION", "DELETE_SELECTED_REGION"].includes(action.type)) {
-          onChange(state.images);
-      }
- 
-      if (action.type === "MOUSE_UP") {
-        if (["RESIZE_BOX", "MOVE_REGION"].includes(state?.mode?.mode)) {
-         onChange(state.images);
-        } 
-      }
-     }
   })
 
   const onRegionClassAdded = useEventCallback((cls) => {
@@ -202,6 +190,13 @@ export const Annotator = ({
       images: images,
     })
   }, [images])
+
+  useEffect(() => {
+    if(onChange)
+    {
+      onChange(images);
+    }
+  },  [...state.images.map(item => item.regions)])
 
   useEffect(() => {
     dispatchToReducer({
