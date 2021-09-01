@@ -47,15 +47,16 @@ type Props = {
   keypointDefinitions: KeypointsDefinition,
   fullImageSegmentationMode?: boolean,
   autoSegmentationOptions?:
-    | {| type: "simple" |}
-    | {| type: "autoseg", maxClusters?: number, slicWeightFactor?: number |},
-  hideHeader?: boolean,
-  hideHeaderText?: boolean,
-  hideNext?: boolean,
-  hidePrev?: boolean,
-  hideSettings?: boolean,
-  hideRightSidebar?: boolean,
-  hideLeftSidebar?: boolean,
+  | {| type: "simple" |}
+    | {| type: "autoseg", maxClusters ?: number, slicWeightFactor ?: number |},
+hideHeader ?: boolean,
+  hideHeaderText ?: boolean,
+  hideNext ?: boolean,
+  hidePrev ?: boolean,
+  hideSettings ?: boolean,
+  hideRightSidebar ?: boolean,
+  hideLeftSidebar ?: boolean,
+  showResult ?: number,
 }
 
 export const Annotator = ({
@@ -101,7 +102,8 @@ export const Annotator = ({
   hideRightSidebar,
   hideLeftSidebar,
   allowComments,
-  showCommentInRegionHeader
+  showCommentInRegionHeader,
+  showResult,
 }: Props) => {
   if (typeof selectedImage === "string") {
     selectedImage = (images || []).findIndex((img) => img.src === selectedImage)
@@ -140,17 +142,18 @@ export const Annotator = ({
       keypointDefinitions,
       allowComments,
       showCommentInRegionHeader,
+      showResult,
       ...(annotationType === "image"
         ? {
-            selectedImage,
-            images,
-            selectedImageFrameTime:
-              images && images.length > 0 ? images[0].frameTime : undefined,
-          }
+          selectedImage,
+          images,
+          selectedImageFrameTime:
+            images && images.length > 0 ? images[0].frameTime : undefined,
+        }
         : {
-            videoSrc,
-            keyframes,
-          }),
+          videoSrc,
+          keyframes,
+        }),
     })
   )
 
@@ -164,7 +167,7 @@ export const Annotator = ({
         return onPrevImage(without(state, "history"))
       }
     }
- 
+
     dispatchToReducer(action)
   })
 
@@ -192,11 +195,10 @@ export const Annotator = ({
   }, [images])
 
   useEffect(() => {
-    if(onRegionsChange)
-    {
+    if (onRegionsChange) {
       onRegionsChange(state.images);
     }
-  },  [...state.images.map(item => item.regions)])
+  }, [showResult])
 
   useEffect(() => {
     dispatchToReducer({
