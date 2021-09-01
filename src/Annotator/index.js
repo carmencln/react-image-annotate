@@ -90,7 +90,7 @@ export const Annotator = ({
   onExit,
   onNextImage,
   onPrevImage,
-  onChange,
+  onRegionsChange,
   keypointDefinitions,
   autoSegmentationOptions = { type: "autoseg" },
   hideHeader,
@@ -192,9 +192,9 @@ export const Annotator = ({
   }, [images])
 
   useEffect(() => {
-    if(onChange)
+    if(onRegionsChange)
     {
-      onChange(images);
+      onRegionsChange(state.images);
     }
   },  [...state.images.map(item => item.regions)])
 
