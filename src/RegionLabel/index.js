@@ -135,6 +135,9 @@ export const RegionLabel = ({
                 options={asMutable(
                   allowedClasses.map((c) => ({ value: c, label: c }))
                 )}
+                menuPortalTarget={document.body}
+                menuShouldScrollIntoView={false}
+                styles={{ menuPortal: base => ({ ...base, zIndex: 20 }) }}
               />
             </div>
           )}
